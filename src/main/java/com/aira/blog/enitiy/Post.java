@@ -1,22 +1,21 @@
 package com.aira.blog.enitiy;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private String title;
     private String body;
+
+    @Column(unique = true)
     private String slug;
     private Boolean isPublished;
     private Boolean isDeleted;
-    private Integer createdAt;
-    private Integer publishedAt;
+    private Long createdAt;
+    private Long publishedAt;
 }

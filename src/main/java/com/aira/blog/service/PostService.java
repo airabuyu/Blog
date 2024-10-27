@@ -5,7 +5,7 @@ import com.aira.blog.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.Instant;
 
 @Service
 public class PostService {
@@ -17,6 +17,7 @@ public class PostService {
     }
 
     public Post createPost(Post post) {
+        post.setCreatedAt(Instant.now().getEpochSecond());
         return postRepository.save(post);
     }
 
@@ -44,6 +45,8 @@ public class PostService {
             return null;
         }
         post.setIsPublished(true);
+        post.setPublishedAt(Instant.now().getEpochSecond());
+
         return postRepository.save(post);
     }
 
