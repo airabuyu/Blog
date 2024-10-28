@@ -3,6 +3,8 @@ package com.aira.blog.enitiy;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 public class Post {
@@ -18,4 +20,7 @@ public class Post {
     private Boolean isDeleted;
     private Long createdAt;
     private Long publishedAt;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post", orphanRemoval = true)
+    private List<Comment> comments;
 }

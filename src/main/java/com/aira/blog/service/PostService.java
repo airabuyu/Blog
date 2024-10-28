@@ -12,6 +12,10 @@ public class PostService {
     @Autowired
     PostRepository postRepository;
 
+    public Iterable<Post> getPosts() {
+        return postRepository.findAll();
+    }
+
     public Post getPostBySlug(String slug) {
         return postRepository.findFirstBySlugAndIsDeleted(slug, false).orElse(null);
     }
@@ -51,7 +55,5 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public Iterable<Post> getPosts() {
-        return postRepository.findAll();
-    }
+
 }
